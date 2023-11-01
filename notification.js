@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require('cors');
 const admin = require("firebase-admin");
 const service = require("./firebaseAdmin.json");
 admin.initializeApp({
@@ -6,6 +7,8 @@ admin.initializeApp({
   databaseURL: "https://gomasjid-4a35a.web.app/login",
 });
 const app = express();
+app.use(cors({ origin: '*' }));
+
 const port = process.env.PORT || 3000;
 app.use(express.json());
 app.post("/sendNotification", async (req, res) => {
